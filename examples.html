@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>easy-js examples</title>
+</head>
+<body>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+<script src="easy-js-extensions.js"></script>
+<script>
+$(function(){
+	if(location.getQueryString("id")==null)
+		location.href=location.href+"?id=hk-0001";
+
+	var split=" ";
+	var split_end="*************************";
+	console.log("location.getQueryString(\"id\") => "+location.getQueryString("id"));
+	console.log("String.format(\"hello {0} {1}\",\"again\",\"world\") => " + String.format("hello {0} {1}","again","world"));
+	console.log(split_end+" Regex 更多內容看源碼 "+split_end);
+	console_log("regex.email",easyJs.regex.email,["notmail.example.com","js.mail@example.com"],split);
+	console_log("regex.chinese",easyJs.regex.chinese,["中國人","中國人Chinese"],split);
+	console_log("regex.http_https",easyJs.regex.http_https,["http://www.example.com","https://www.example.cn","ftp://www.example.com"],split);
+});
+function console_log(func_name,obj,param,split){
+	console.log(func_name+".expression: "+obj.expression);
+	if($.isArray(param)){
+		for(i=0;i<param.length;i++){
+			console.log(func_name+".test(\""+param[i]+"\") => " + obj.test(param[i]));
+		}
+	}else{
+		console.log(func_name+".test(\""+param+"\") => " + obj.test(param));
+	}
+	console.log(split);
+}
+</script>
+</body>
+</html>
