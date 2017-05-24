@@ -208,6 +208,7 @@ window.easyJs={
 	}
 };
 
+
 $(function(){
 	$.each(easyJs.regex,function(i,item){
 		item.test=function(str){
