@@ -207,7 +207,7 @@ window.easyJs={
 		http_https:{expression: /^(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/}    //以http://或https://開頭的網址
 	},
 	onTouchDevice:function (func){
-		if(!document.hasOwnProperty("ontouchstart")){
+		if('ontouchstart' in document.documentElement){
 			func();
 		}
 	},
