@@ -205,15 +205,31 @@ window.easyJs={
 		password:{expression:/^[a-zA-Z]\w{5,17}$/},  																	 //以字母开头，长度在6-18之间，只能包含字符、数字和下划线。 
 		chinese:{expression:/^[\u4e00-\u9fa5]{0,}$/},																	 //純中文
 		http_https:{expression: /^(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?/}    //以http://或https://開頭的網址
+	},
+	onTouchDevice:function (func){
+		if(!document.hasOwnProperty("ontouchstart")){
+			func();
+		}
+	},
+	init:function(){
+		var _this=this;
+		function addRegexTest(){
+			$.each(_this.regex,function(i,item){
+				item.test=function(str){
+					return this.expression.test(str);
+				}
+			});
+		}
+		
+		addRegexTest();//為所有regex驗證規則添加 test驗證function
 	}
 };
 
 
 $(function(){
-	$.each(easyJs.regex,function(i,item){
-		item.test=function(str){
-			return this.expression.test(str);
-		}
+	easyJs.init();
+	easyJs.onTouchDevice(function(){
+		$("body").addClass("is-touch-device");
 	});
 });
 
